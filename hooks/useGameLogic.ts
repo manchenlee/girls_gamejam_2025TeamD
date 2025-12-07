@@ -171,14 +171,6 @@ export const useGameLogic = () => {
     if (nextScriptId.includes('brew') && !nextScriptId.includes('prompt')) {
       setState(prev => ({ ...prev, phase: GamePhase.BREWING }));
       setActiveScriptNode(null);
-    } else if (nextScriptId === 'd2_guest_enter') {
-         setState(prev => ({ 
-            ...prev, 
-            phase: GamePhase.DIALOGUE,
-            currentGuest: CharacterId.GUEST_2 
-        }));
-        const guestScript = SCRIPTS[`day2_guest`];
-        setActiveScriptNode(guestScript[0]);
     } else {
        // Check standard scripts
        let found: ScriptNode | undefined;

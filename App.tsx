@@ -60,7 +60,7 @@ const App: React.FC = () => {
     }
   };
 
-  const isKnocking = activeScriptNode?.id === 'd1_4' || activeScriptNode?.id === 'd2_door' || activeScriptNode?.id === 'd4_4';
+  const isKnocking = activeScriptNode?.id === 'd1_4' || activeScriptNode?.id === 'd2_3' || activeScriptNode?.id === 'd4_4';
 
   return (
     <div className="w-screen h-screen relative bg-black overflow-hidden">
