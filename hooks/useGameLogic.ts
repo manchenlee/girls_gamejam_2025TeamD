@@ -98,8 +98,13 @@ export const useGameLogic = () => {
        } else if (state.history.day1Result === 'fail' || state.history.day1Result === null) {
            newSceneItems.push('dagger');
        }
-    } else if (day === 4) {
-        newSceneItems.push('broom');
+    }else if (day === 3) {
+        if (state.history.day2Result === 'heal') {
+            console.log("掃帚新增");
+           newSceneItems.push('broom');
+    } }
+    else if (day === 4) {
+        //newSceneItems.push('broom');
         newSceneItems.push('book');
     }
     
@@ -110,7 +115,7 @@ export const useGameLogic = () => {
       currentGuest: guest,
       dialogueIndex: 0,
       potionsBrewed: [],
-      unlockedJournal: day <= 2 ? [...prev.unlockedJournal, day - 1] : prev.unlockedJournal,
+      unlockedJournal: day <= 3 ? [...prev.unlockedJournal, day - 1] : prev.unlockedJournal,
       sceneItems: newSceneItems,
       activeHint: null, 
       isTransitioning: false, 
@@ -250,7 +255,7 @@ export const useGameLogic = () => {
           const hasBroom = state.sceneItems.includes('broom');
           const hasDagger = state.sceneItems.includes('dagger');
           
-          const hint = (hasFeather && hasBroom && hasDagger) ? DAY4_HINT_ED3 : DAY4_HINT_ED3NOT;
+          const hint = (hasBroom && hasDagger || hasBroom && hasFeather) ? DAY4_HINT_ED3 : DAY4_HINT_ED3NOT;
 
           setState(prev => ({ 
               ...prev, 
@@ -379,19 +384,24 @@ export const useGameLogic = () => {
     } else if (state.day === 2) {
         const hasAloe = ingredients.includes(HerbId.ALOE);
         const hasEryngium = ingredients.includes(HerbId.ERYNGIUM);
-        
+        const hasChamomile = ingredients.includes(HerbId.CHAMOMILE);
         const hasAconite = ingredients.includes(HerbId.ACONITE);
         const hasHemlock = ingredients.includes(HerbId.HEMLOCK);
+        const hemlockCount = ingredients.filter(i => i === HerbId.HEMLOCK).length;
 
-        if (hasAloe && hasEryngium) {
+        if (hasAloe && hasEryngium || hasAloe && hasEryngium && hasChamomile) {
              setState(prev => ({ ...prev, history: { ...prev.history, day2Result: 'heal' } }));
              delayedResultKey = 'day2_result_heal';
-        } else if (hasAconite && hasHemlock) {
+        } else if (hasAconite && hasHemlock && hemlockCount >= 2) {
              setState(prev => ({ ...prev, history: { ...prev.history, day2Result: 'poison' } }));
              delayedResultKey = 'day2_result_poison';
-        } else {
+        } else if (hasAconite || hasHemlock){
              setState(prev => ({ ...prev, history: { ...prev.history, day2Result: 'fail' } }));
              delayedResultKey = 'day2_result_fail';
+        }
+        else{
+            setState(prev => ({ ...prev, history: { ...prev.history, day2Result: 'heal_fail' } }));
+             delayedResultKey = 'day2_result_heal_fail';
         }
         immediateScriptKey = 'day2_result';
         
@@ -429,7 +439,10 @@ export const useGameLogic = () => {
         if (hasCat) {
              selectedEndingScript = ENDING_SCRIPTS.ending4; // Hidden Ending
              endingId = 'ending4';
-        } else if (hasFeather && hasBroom && hasDagger) {
+        } else if (hasFeather && hasBroom) {
+             selectedEndingScript = ENDING_SCRIPTS.ending3; // True Ending
+             endingId = 'ending3';
+        } else if (hasBroom && hasDagger) {
              selectedEndingScript = ENDING_SCRIPTS.ending3; // True Ending
              endingId = 'ending3';
         } else if (state.history.day3Result === 'freedom') {

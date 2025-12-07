@@ -60,7 +60,7 @@ export const HomeScene: React.FC<Props> = ({ onStart, onDebugEnding3 }) => {
        {onDebugEnding3 && (
            <button 
              onClick={onDebugEnding3}
-             className="absolute bottom-4 left-4 z-50 text-xs text-[#d4af37]/30 hover:text-[#d4af37] border border-[#d4af37]/20 px-2 py-1 rounded"
+             className="hidden absolute bottom-4 left-4 z-50 text-xs text-[#d4af37]/30 hover:text-[#d4af37] border border-[#d4af37]/20 px-2 py-1 rounded"
            >
              Debug: Ending 3
            </button>

@@ -30,12 +30,13 @@ export const ASSETS = {
   characters: {
     [CharacterId.MAIN]: `${BASE_URL}mainC.png`,
     [CharacterId.MAIN_GLITCH]: `${BASE_URL}mainC2.png`, // Glitch variant
+    [CharacterId.MAIN_ANGRY]: `${BASE_URL}mainCa.png`,
     [CharacterId.CAT]: `${BASE_URL}cat.png`, 
     // Mapping GUEST_1 to c2 (Boy) for Day 1
-    [CharacterId.GUEST_1]: `${BASE_URL}c2.png`, 
+    [CharacterId.GUEST_1]: `${BASE_URL}c1.png`, 
     // Mapping GUEST_2 to c1 (Woman/Wife) for Day 2
-    [CharacterId.GUEST_2]: `${BASE_URL}c1.png`,
-    [CharacterId.GUEST_3]: `${BASE_URL}c1.png`, 
+    [CharacterId.GUEST_2]: `${BASE_URL}c2.png`,
+    [CharacterId.GUEST_3]: `${BASE_URL}c3.png`, 
   },
 
   // Herbs
@@ -64,15 +65,17 @@ export const HERBS: Herb[] = [
 ];
 
 // --- Herb Book Lore ---
-export const HERB_BOOK_LORE_DAY1 = "⋯⋯無花果與濱刺芹根都是城市中盛行的「助興」食物，人們相信吃下這些東西會使死去的激情重燃，貧瘠的土壤潤澤⋯⋯";
+export const HERB_BOOK_LORE_DAY1 = "少量的烏頭和毒芹能造成麻醉與鎮靜的效果。\n（旁邊有著一小行筆記：意即不超過一份。烏頭與毒芹一起使用則不需要加其他的東西——容易藥性衝突）";
 export const HERB_BOOK_LORE_DAY2 = "⋯⋯麥稈石竹的存在即是腐敗，這種草一但長在藥草之間，種植者就必須花很多力氣將它拔除，因此麥稈石竹曾出現在奧菲莉亞的瘋言瘋語中⋯⋯";
-
+export const HERB_BOOK_LORE_DAY3 = "……無花果與濱刺芹根都是城市中盛行的「助興」食物，人們相信吃下這些東西會使死去的激情重燃，貧瘠的土壤潤澤……";
 // --- Journal Entries ---
 export const JOURNAL_ENTRIES = [
   // Day 1 (Index 0)
   "山楂在五月開花，宣告春天的來臨，正巧趕上五朔節的慶典，也為牧羊人提供遮陰之處。人們相信山楂具有神奇的力量——「仙子樹」、「杜鵑珠」、「仙靈飲」——人們這麼稱呼它。\n黛安娜夫人常說山楂可以救人，能做成強心劑。\n\n（隔了很久，才有人再次書寫這本日記）\n\n伊娃很久沒來了。\n\n（有些塗抹的痕跡，難以辨認）\n需要撿些阿拉伯膠樹，艾瑪大嬸的眼疾又復發了。\n舞會季節到了，多準備些毛茛與剪秋羅。\n說不定還會有人需要苦艾來解相思呢。\n\n（又隔了一陣子，這本日記才被再次書寫）\n\n艾瑪大嬸也很久沒有來了。",
   // Day 2 (Index 1)
-  "沒有停止。\n\n腦海裡的聲音沒有停止。"
+  "沒有停止。\n\n腦海裡的聲音沒有停止。",
+  // Day 3 (Index 2)
+  "我不明白莎夏的字條是什麼意思，什麼叫伊娃和艾瑪大嬸永遠不會來了？\n\n（下半頁被撕去了）"
 ];
 
 // --- Item Descriptions Data ---
@@ -91,10 +94,10 @@ export const DESCRIPTIONS = {
   },
   exit: {
     day1: "窗：\n沿著黑刺李小徑一直走，能在兩聲鐘響之間抵達小鎮。\n此刻外頭被濃霧包圍，這樣的日子已經持續了好一陣子了。",
-    day2: "窗：\n沿著黑刺李小徑一直走，能在兩聲鐘響之間抵達小鎮。\n今天的霧似乎沒有那麼濃，要出去採集看看嗎？\n（點擊即可出去走走）"
+    day2: "窗：\n沿著黑刺李小徑一直走，能在兩聲鐘響之間抵達小鎮。\n今天的霧似乎沒有那麼濃，要出去採集看看嗎？"
   },
-  cauldron: "鍋釜：\n黛安娜女士留給你的大鍋斧。\n「不用太相信書上寫的，」她總說：「相信感覺與實踐。」",
-  axe: "鍋釜：\n黛安娜女士留給你的大鍋斧。「不用太相信書上寫的，」她總說：「相信感覺與實踐。」", 
+  cauldron: "鍋釜：\n黛安娜女士留給你的大鍋釜。\n「不用太相信書上寫的，」她總說：「相信感覺與實踐。」",
+  axe: "鍋釜：\n黛安娜女士留給你的大鍋釜。「不用太相信書上寫的，」她總說：「相信感覺與實踐。」", 
   feather: {
       default: "尾羽：\n這可不能吃。",
       day4: "尾羽：\n那些哭泣的。"
@@ -104,7 +107,7 @@ export const DESCRIPTIONS = {
       day4: "匕首：\n那些鋒利的。"
   },
   broom: {
-      day3: "掃首：\n這不能吃這不能吃這不能吃。",
+      default: "掃帚：\n這不能吃這不能吃這不能吃。",
       day4: "掃帚：\n那些使人疼痛的。"
   },
   book: {
@@ -125,10 +128,10 @@ export const INTRO_SCRIPT = [
 
 // --- Ending Titles ---
 export const ENDING_TITLES: Record<string, string> = {
-    ending1: "結局一：無盡的業火",
-    ending2: "結局二：未知的旅程",
-    ending3: "結局三：神之聲",
-    ending4: "結局四：肌肉貓貓神"
+    ending1: "無盡的業火 (1/4)",
+    ending2: "未知的旅程 (2/4)",
+    ending3: "神之聲 (3/4)",
+    ending4: "肌肉貓貓神 (4/4)"
 };
 
 // --- Ending Scripts ---
@@ -277,6 +280,7 @@ export const RESULT_TITLES: Record<string, string> = {
     "day1_result_fail": "事件：想得到愛情的少年",
     "day2_result_heal": "事件：受傷的婦人",
     "day2_result_poison": "事件：受傷的婦人",
+    "day2_result_heal_fail": "事件：受傷的婦人",
     "day2_result_fail": "事件：受傷的婦人",
     "day3_result_fake": "事件：求死的少女",
     "day3_result_death": "事件：求死的少女",
@@ -292,11 +296,11 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
       ]
     },*/
     { id: "d1_wake", speaker: "系統", text: "「啊⋯⋯」" },
-    { id: "d1_1", speaker: "系統", text: "被喚醒的你百無聊賴望向窗外。不知為何，最近的天色逐漸變得黯淡。\n你覺得烏雲密佈的樣子很像袒出肚腹沈睡的黑色貓咪。" },
+    { id: "d1_1", speaker: "系統", text: "被喚醒的你百無聊賴望向窗外。\n不知為何，最近的天色逐漸變得黯淡。\n你覺得烏雲密佈的樣子很像袒出肚腹沈睡的黑色貓咪。" },
     /*{ id: "d1_2", speaker: "系統", text: "" },*/
     { id: "d1_2", speaker: "黑貓", text: "喵——" },
     { id: "d1_3", speaker: "系統", text: "⋯⋯像是不甘寂寞，窗外的聲音緊跟著慵懶的貓叫聲響起。" }, 
-    { id: "d1_4", speaker: "系統", text: "走近窗戶，一道濕漉漉的修長身影便如眷戀故居的鬼魂被牽入屋內。" },
+    { id: "d1_4", speaker: "系統", text: "走近窗戶，\n一道濕漉漉的修長身影便如眷戀故居的鬼魂被牽入屋內。" },
   ],
   "day1_guest": [
     { id: "d1_g1", speaker: "少年", text: "晚安，女士。" },
@@ -393,7 +397,13 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
   "day2_result_heal": [
       { id: "d2_rh1", speaker: "系統", text: "清晨的空氣比以往清新了一些。" },
       { id: "d2_rh2", speaker: "系統", text: "你聽說村裡有個婦人帶著孩子離開了，沒有人知道她去了哪裡。" },
-      { id: "d2_rh3", speaker: "系統", text: "也許這就是最好的結局。" }
+      { id: "d2_rh3", speaker: "系統", text: "早晨拔了幾株藥園中蔓生的芸香，" },
+{ id: "d2_rh4", speaker: "系統", text: "意外地在角落看見了好久沒用的樺樹枝掃帚。" },
+{ id: "d2_rh5", speaker: "系統", text: "你將它帶回屋內。" },
+  ],
+"day2_result_heal_fail": [
+      { id: "d2_rhf1", speaker: "系統", text: "一切如舊。" },
+      { id: "d2_rhf2", speaker: "系統", text: "你瞥見窗外有女人一閃而過，如泣如訴。" },
   ],
   "day2_result_poison": [
       { id: "d2_rp1", speaker: "系統", text: "村裡的鐘聲敲得很急。" },
@@ -404,7 +414,8 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
       { id: "d2_rf1", speaker: "系統", text: "一切如舊。" },
       { id: "d2_rf2", speaker: "系統", text: "那個婦人再也沒有出現過。" },
       { id: "d2_rf3", speaker: "系統", text: "有些傷痕是藥石罔效的。" }
-  ],
+  ], 
+
 
 
   // --- Day 3 ---

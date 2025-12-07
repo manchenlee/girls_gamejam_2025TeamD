@@ -25,6 +25,8 @@ export enum HerbId {
 export enum CharacterId {
   MAIN = 'mainC',
   MAIN_GLITCH = 'mainC2', // Added for glitch effect
+  MAIN_ANGRY = 'mainCa', // Added for glitch effect
+
   CAT = 'cat_black',
   GUEST_1 = 'c1', // Wife
   GUEST_2 = 'c2', // Boy
@@ -59,7 +61,7 @@ export interface GameState {
   potionsBrewed: string[]; // Changed from HerbId[] to string[] to allow special items
   history: {
     day1Result: 'cured' | 'poisoned' | 'fail' | null;
-    day2Result: 'love' | 'diarrhea' | 'fail' | 'heal' | 'poison' | null;
+    day2Result: 'heal_fail' | 'fail' | 'heal' | 'poison' | null;
     day3Result: 'freedom' | 'death' | 'marriage' | null;
     savedGirlPreviously: boolean;
   };

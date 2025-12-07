@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Book, Scroll, History, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GameState, ScriptNode } from '../types';
-import { JOURNAL_ENTRIES, HERBS, HINTS, INTRO_SCRIPT, HERB_BOOK_LORE_DAY1, HERB_BOOK_LORE_DAY2, SCRIPTS, RESULT_TITLES, ENDING_SCRIPTS, ENDING_TITLES } from '../constants';
+import { JOURNAL_ENTRIES, HERBS, HINTS, INTRO_SCRIPT, HERB_BOOK_LORE_DAY1, HERB_BOOK_LORE_DAY2, HERB_BOOK_LORE_DAY3,SCRIPTS, RESULT_TITLES, ENDING_SCRIPTS, ENDING_TITLES } from '../constants';
 
 interface Props {
   gameState: GameState;
@@ -436,7 +436,7 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
 
       {/* Brewing UI Buttons - Centered */}
       {gameState.phase === 'BREWING' && (
-          <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-50 flex gap-4">
+          <div className="absolute bottom-20 right-10 z-50 flex gap-4">
               <button onClick={onClear} className="px-6 py-3 bg-red-900/80 border border-red-500 text-white rounded font-title text-lg hover:bg-red-800 cursor-pointer">
                   清空大釜
               </button>
@@ -459,12 +459,15 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
                   <button onClick={() => setShowJournal(false)} className="absolute top-4 right-4 cursor-pointer"><X /></button>
                   <h2 className="text-4xl font-title text-center mb-8 border-b-2 border-[#3e2723] pb-2">日記</h2>
                   <div className="space-y-6 text-xl md:text-2xl">
-                      {gameState.unlockedJournal.map(idx => (
-                          <div key={idx} className="mb-4">
-                              <p className="whitespace-pre-line">{JOURNAL_ENTRIES[idx]}</p>
-                              <div className="flex justify-center mt-2 text-2xl text-[#3e2723]/50">***</div>
-                          </div>
-                      ))}
+                      {gameState.unlockedJournal.map(idx => {
+      console.log("渲染日記 index:", idx, "內容:", JOURNAL_ENTRIES[idx]);
+      return (
+          <div key={idx} className="mb-4">
+              <p className="whitespace-pre-line">{JOURNAL_ENTRIES[idx]}</p>
+              <div className="flex justify-center mt-2 text-2xl text-[#3e2723]/50">***</div>
+          </div>
+      );
+  })}
                   </div>
               </div>
           </div>
@@ -485,19 +488,25 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
                             {HERB_BOOK_LORE_DAY2}
                           </>
                       )}
+                      {gameState.day >= 3 && (
+                          <>
+                            <br /><br />
+                            {HERB_BOOK_LORE_DAY3}
+                          </>
+                      )}
                   </p>
                   
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {HERBS.map(herb => (
-                          <div key={herb.id} className="flex gap-4 items-start border border-[#d4af37]/20 p-4 rounded bg-[#0d1b1e]/50 hover:bg-[#0d1b1e] transition-colors">
-                              <SafeImage src={herb.image} className="w-20 h-20 object-contain shrink-0" alt={herb.name} fallbackColor="2e7d32" />
-                              <div>
-                                  <h3 className="text-[#d4af37] font-bold text-xl mb-1">{herb.name}</h3>
-                                  <p className="text-lg text-gray-300 leading-snug">{herb.description}</p>
-                              </div>
-                          </div>
-                      ))}
-                  </div>
+                    {/*<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {HERBS.map(herb => (
+                            <div key={herb.id} className="flex gap-4 items-start border border-[#d4af37]/20 p-4 rounded bg-[#0d1b1e]/50 hover:bg-[#0d1b1e] transition-colors">
+                                <SafeImage src={herb.image} className="w-20 h-20 object-contain shrink-0" alt={herb.name} fallbackColor="2e7d32" />
+                                <div>
+                                    <h3 className="text-[#d4af37] font-bold text-xl mb-1">{herb.name}</h3>
+                                    <p className="text-lg text-gray-300 leading-snug">{herb.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>*/}
               </div>
           </div>
       )}

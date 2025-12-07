@@ -43,19 +43,23 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
   // Main Character Glitch State
   const [currentMainImage, setCurrentMainImage] = useState(ASSETS.characters[CharacterId.MAIN]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Switch to Glitch Image
-      setCurrentMainImage(ASSETS.characters[CharacterId.MAIN_GLITCH]);
-      
-      // Revert after 200ms
-      setTimeout(() => {
-        setCurrentMainImage(ASSETS.characters[CharacterId.MAIN]);
-      }, 200);
-    }, 6000);
 
-    return () => clearInterval(interval);
-  }, []);
+useEffect(() => {
+  if (gameState.day === 4) {
+    setCurrentMainImage(ASSETS.characters[CharacterId.MAIN_ANGRY]);
+    return;
+  }
+
+  const interval = setInterval(() => {
+    // 切換眨眼或 glitch
+    setCurrentMainImage(ASSETS.characters[CharacterId.MAIN_GLITCH]);
+    setTimeout(() => {
+      setCurrentMainImage(ASSETS.characters[CharacterId.MAIN]);
+    }, 200);
+  }, 6000);
+
+  return () => clearInterval(interval);
+}, [gameState.day]);
 
 
   // Only show tooltips during BREWING phase
@@ -117,9 +121,9 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-12 left-0 right-0 z-50 flex justify-center pointer-events-none px-4"
+            className="absolute top-20 left-0 right-0 z-50 flex justify-center pointer-events-none px-4"
           >
-            <div className="bg-black/60 text-[#e2d2a4] px-8 py-4 rounded-xl border border-[#d4af37]/50 backdrop-blur-sm font-serif text-xl md:text-2xl tracking-wide shadow-lg whitespace-pre-line text-center">
+            <div className="bg-black/60 text-[#e2d2a4] px-8 py-4 rounded-xl border border-[#d4af37]/50 backdrop-blur-sm font-serif text-l md:text-xl tracking-wide shadow-lg whitespace-pre-line text-center">
               {hoverDescription}
             </div>
           </motion.div>
@@ -129,7 +133,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       {/* Guest (Z-0) - Behind Background (Z-5) */}
       {gameState.currentGuest && (
         <div
-          className={`absolute top-[20%] z-0 pointer-events-none ${gameState.day === 2 ? 'right-[10%]' : 'right-[10%]'}`}
+          className={`absolute top-[25%] z-0 pointer-events-none ${gameState.day === 2 || gameState.day === 3? 'right-[5%]' : 'right-[5%]'}`}
         >
            <SafeImage 
               src={ASSETS.characters[gameState.currentGuest]} 
@@ -152,7 +156,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       
       {/* Mirror - Moved right to left-[30%] */}
       <div 
-        className={`absolute top-[20%] left-[30%] w-16 md:w-24 h-32 md:h-40 opacity-90 hover:brightness-125 transition-all z-10 ${isDay4Brewing ? 'cursor-pointer animate-pulse hover:scale-110' : 'cursor-default'}`}
+        className={`absolute top-[48%] left-[35%] w-16 md:w-24 h-32 md:h-40 opacity-90 hover:brightness-125 transition-all z-10 ${isDay4Brewing ? 'cursor-pointer animate-pulse hover:scale-110' : 'cursor-default'}`}
         draggable={isDay4Brewing}
         onDragStart={(e) => onHerbDragStart(e, 'mirror')}
         onMouseEnter={() => handleMouseEnter(DESCRIPTIONS.mirror)}
@@ -174,7 +178,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       {/* Broom - Day 4 */}
       {gameState.sceneItems.includes('broom') && (
         <div 
-            className={`absolute bottom-[10%] right-[20%] w-24 h-48 z-30 hover:brightness-125 transition-all ${isDay4Brewing ? 'cursor-pointer hover:scale-105' : 'cursor-default'}`}
+            className={`absolute bottom-[10%] left-[10%] w-24 h-48 z-30 hover:brightness-125 transition-all ${isDay4Brewing ? 'cursor-pointer hover:scale-105' : 'cursor-default'}`}
             draggable={isDay4Brewing}
             onDragStart={(e) => onHerbDragStart(e, 'broom')}
             onMouseEnter={() => handleMouseEnter(DESCRIPTIONS.broom)}
@@ -187,7 +191,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       {/* Book - Day 4 */}
       {gameState.sceneItems.includes('book') && (
         <div 
-            className={`absolute top-[40%] right-[10%] w-20 h-24 z-30 hover:brightness-125 transition-all rotate-12 ${isDay4Brewing ? 'cursor-pointer hover:scale-105' : 'cursor-default'}`}
+            className={`hidden absolute top-[40%] right-[10%] w-20 h-24 z-30 hover:brightness-125 transition-all rotate-12 ${isDay4Brewing ? 'cursor-pointer hover:scale-105' : 'cursor-default'}`}
             draggable={isDay4Brewing}
             onDragStart={(e) => onHerbDragStart(e, 'book')}
             onMouseEnter={() => handleMouseEnter(DESCRIPTIONS.book)}
@@ -200,7 +204,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       {/* Feather */}
       {gameState.sceneItems.includes('feather') && (
         <div 
-            className={`absolute bottom-[40%] left-[50%] w-16 h-16 z-30 hover:scale-110 transition-transform ${isDay4Brewing ? 'cursor-pointer hover:drop-shadow-[0_0_10px_white]' : 'cursor-default'}`}
+            className={`absolute bottom-[40%] left-[30%] w-16 h-16 z-30 hover:brightness-125 transition-all ${isDay4Brewing ? 'cursor-pointer hover:drop-shadow-[0_0_10px_white]' : 'cursor-default'}`}
             draggable={isDay4Brewing}
             onDragStart={(e) => onHerbDragStart(e, 'feather')}
             onMouseEnter={() => handleMouseEnter(DESCRIPTIONS.feather)}
@@ -213,7 +217,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       {/* Dagger */}
       {gameState.sceneItems.includes('dagger') && (
         <div 
-            className={`absolute bottom-[20%] right-[50%] w-20 h-20 z-30 hover:scale-105 transition-transform rotate-45 ${isDay4Brewing ? 'cursor-pointer hover:drop-shadow-[0_0_10px_red]' : 'cursor-default'}`}
+            className={`absolute bottom-[25%] right-[70%] w-20 h-20 z-30 hover:brightness-125 transition-all rotate-45 ${isDay4Brewing ? 'cursor-pointer hover:drop-shadow-[0_0_10px_red]' : 'cursor-default'}`}
             draggable={isDay4Brewing}
             onDragStart={(e) => onHerbDragStart(e, 'dagger')}
             onMouseEnter={() => handleMouseEnter(DESCRIPTIONS.dagger)}
@@ -227,7 +231,7 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
       <div className="absolute inset-0 bg-[#0d1b1e] opacity-30 pointer-events-none z-10"></div>
 
       {/* Main Character (Z-20) - Glitching Image */}
-      <div className="absolute bottom-[10%] left-[70%] transform -translate-x-1/2 z-20 pointer-events-none">
+      <div className="absolute bottom-[10%] left-[50%] z-20 pointer-events-none">
         <SafeImage 
             src={currentMainImage} 
             className="h-[65vh] object-contain drop-shadow-2xl" 
@@ -283,17 +287,17 @@ export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDr
 
       {/* Cauldron (Z-40) */}
       <div 
-        className={`absolute bottom-[-8rem] left-[55%] z-40 transition-all duration-300 cursor-pointer opacity-1 ${gameState.phase === GamePhase.BREWING ? 'scale-110 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]' : 'scale-100'}`}
+        className={`absolute bottom-[0rem] left-[45%] z-40 transition-all duration-300 cursor-pointer opacity-1 ${gameState.phase === GamePhase.BREWING ? 'scale-100 drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]' : 'scale-100'}`}
         onDragOver={(e) => e.preventDefault()}
         onDrop={onPotDrop}
         onClick={onPotClick}
         onMouseEnter={() => handleMouseEnter(DESCRIPTIONS.cauldron)}
         onMouseLeave={handleMouseLeave}
       >
-        <SafeImage src={ASSETS.cauldron} className="w-64 md:w-96 opacity-90" alt="Cauldron" fallbackColor="1a1a1a" />
+        <SafeImage src={ASSETS.cauldron} className="w-64 md:w-96 opacity-100" alt="Cauldron" fallbackColor="1a1a1a" />
         
         {/* Ingredients inside (Names) - Moved Up to top-[20%] */}
-        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 w-60">
+        <div className="absolute top-[70%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 w-60">
             {gameState.potionsBrewed.map((id, idx) => {
                 // Check herbs first
                 let displayName = '???';
