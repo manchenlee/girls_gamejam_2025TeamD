@@ -449,9 +449,17 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
       { id: "d3_bc1", speaker: "少女", text: "……多謝。" },
       { id: "d3_bc2", speaker: "系統", text: "她誠懇地看向你，隨即轉身，那背影決絕地像一隻春迴北返的雁。" }
   ],
-  "day3_result_fake": [{ id: "d3_r1", speaker: "主角", text: "你選擇了幫助她解脫——以一種虛假的方式。" }],
-  "day3_result_death": [{ id: "d3_r2", speaker: "主角", text: "你給予了她永恆的安寧。" }],
-  "day3_result_fail": [{ id: "d3_r3", speaker: "主角", text: "你選擇了一條最平庸的道路。" }],
+  "day3_result_fake": [
+    { id: "d3_r1_1", speaker: "主角", text: "你讓她去冥府暫時避風頭。" },
+    { id: "d3_r1_2", speaker: "主角", text: "婚禮當然取消了。" },
+    { id: "d3_r1_3", speaker: "主角", text: "聽說新娘的遺體在家屬的慟哭中消失無蹤。" },
+    ],
+  "day3_result_death": [
+    { id: "d3_r2_1", speaker: "主角", text: "你如她所願，給予她永恆的安寧。" },
+    { id: "d3_r2_2", speaker: "主角", text: "婚禮當然取消了。你彷彿聽見家屬如雷的慟哭。" },],
+  "day3_result_fail": [
+    { id: "d3_r3_1", speaker: "主角", text: "婚禮如期舉行。" }, 
+    { id: "d3_r3_2", speaker: "主角", text: "你做了一個懦弱的選擇。" }],
 
   // --- Day 4 ---
   "day4_start": [
