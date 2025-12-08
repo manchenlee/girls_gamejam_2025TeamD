@@ -295,7 +295,7 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
         { text: "⋯⋯", next: "d1_wake" }
       ]
     },*/
-    { id: "d1_wake", speaker: "系統", text: "「啊⋯⋯」" },
+    { id: "d1_wake", speaker: "系統", text: "「又是那個聲音⋯⋯」" },
     { id: "d1_1", speaker: "系統", text: "被喚醒的你百無聊賴望向窗外。\n不知為何，最近的天色逐漸變得黯淡。\n你覺得烏雲密佈的樣子很像袒出肚腹沈睡的黑色貓咪。" },
     /*{ id: "d1_2", speaker: "系統", text: "" },*/
     { id: "d1_2", speaker: "黑貓", text: "喵——" },
