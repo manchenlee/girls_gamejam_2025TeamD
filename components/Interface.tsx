@@ -520,7 +520,7 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
       
       {/* Journal */}
       {showJournal && (
-          <div className="absolute inset-0 bg-black/80 z-[60] flex justify-center items-center">
+          <div className="absolute inset-0 bg-black/80 z-[80] flex justify-center items-center">
               <div className="bg-[#f5e6c8] text-[#3e2723] w-full max-w-2xl h-[80vh] p-8 rounded shadow-2xl overflow-y-auto relative font-serif">
                   <button onClick={() => setShowJournal(false)} className="absolute top-4 right-4 cursor-pointer"><X /></button>
                   <h2 className="text-4xl font-title text-center mb-8 border-b-2 border-[#3e2723] pb-2">日記</h2>
@@ -541,7 +541,7 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
 
       {/* Herb Book */}
       {showHerbs && (
-          <div className="absolute inset-0 bg-black/80 z-[60] flex justify-center items-center">
+          <div className="absolute inset-0 bg-black/80 z-[80] flex justify-center items-center">
               <div className="bg-[#1a2f33] text-[#e2d2a4] w-full max-w-3xl h-[80vh] p-8 rounded border-2 border-[#d4af37] shadow-2xl overflow-y-auto relative custom-scrollbar">
                   <button onClick={() => setShowHerbs(false)} className="absolute top-4 right-4 cursor-pointer"><X /></button>
                   <h2 className="text-4xl font-title text-center mb-8 text-[#d4af37]">藥草誌</h2>
@@ -567,7 +567,7 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
 
       {/* Logs */}
       {showLogs && (
-          <div className="absolute inset-0 bg-black/80 z-[60] flex justify-center items-center">
+          <div className="absolute inset-0 bg-black/80 z-[80] flex justify-center items-center">
               <div className="bg-[#002630] text-[#e2d2a4] w-full max-w-2xl h-[70vh] p-8 rounded border border-[#d4af37] relative flex flex-col">
                    <button onClick={() => setShowLogs(false)} className="absolute top-4 right-4 cursor-pointer"><X /></button>
                    <h2 className="text-3xl font-title mb-6 text-[#d4af37]">對話紀錄</h2>

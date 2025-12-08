@@ -93,7 +93,7 @@ export const DESCRIPTIONS = {
     day1: "黑貓：\n黛安娜女士生前非常寵愛這隻貓。\n這隻烏黑的貓沒有名字，就像媽——黛安娜女士從來沒有給你一個名字一樣。\n你想，也許你可以為自己取一個名字。",
     day2: "黑貓：\n牠如此靜定地看著你，彷彿是這變動世界中唯一的不變。\n如同生活的錨點。\n明天又會發生什麼事呢？",
     day3: "黑貓：\n牠眼中的世界也是如此令人發笑嗎？",
-    day4: "黑貓：\n⋯⋯" 
+    day4: "黑貓：\n牠聞了聞樹枝，晃了晃尾巴，還是那副悠哉的樣子。" 
   },
   exit: {
     day1: "窗：\n沿著黑刺李小徑一直走，能在兩聲鐘響之間抵達小鎮。\n此刻外頭被濃霧包圍，這樣的日子已經持續了好一陣子了。",
@@ -241,7 +241,7 @@ export const TRUE_ENDING_SCRIPT: ScriptNode[] = [
     { id: "te_1", speaker: "系統", text: "「喔，腦裡的聲音，神啊！\n我總算遇見你了。」" },
     { id: "te_2", speaker: "系統", text: "「請您告訴我，我該怎麼做？\n現在的苦難是您給我的試煉嗎？」" },
     { id: "te_3", speaker: "系統", text: "「為什麼事情會變成這樣？\n為什麼人們會變成這樣？" },
-    { id: "te_4", speaker: "系統", text: "「想要甜蜜的愛卻被迫得愛，想要溫暖的家庭卻被迫成全，\n想要自由卻受他人束縛。\n即使失去熟悉的一切，即使逃到森林深處，依然會被審判⋯⋯" },
+    { id: "te_4", speaker: "系統", text: "「想要甜蜜的愛卻被迫得愛，想要溫暖的家庭卻被迫成全，\n想要自由卻受他人束縛。\n即使失去熟悉的一切，即使逃到森林深處，依然會被審判⋯⋯」" },
     { id: "te_5", speaker: "系統", text: "「為什麼逃不出去呢？\n神啊，請您指點我面對這場苦難的方法吧。」", choices: [
         { text: "我沒辦法直接告訴你該怎麼做。", next: "te_6" }
     ]},
@@ -403,19 +403,22 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
       { id: "d2_r_end2", speaker: "系統", text: "抬頭望向沈甸甸的灰色天空，這穹頂之下，還有多少這樣的事？" }
   ],
   "day2_result_heal": [
-      { id: "d2_rh1", speaker: "系統", text: "你聽說那婦人帶著孩子離開了，沒有人知道她去了哪裡。" },
+      { id: "d2_rh1", speaker: "系統", text: "即使治標不治本，你還是衷心祈求婦人能康復。" },
       { id: "d2_rh2", speaker: "系統", text: "早晨拔了幾株藥園中蔓生的芸香，" },
-{ id: "d2_rh3", speaker: "系統", text: "意外地在角落看見了好久沒用的樺樹枝掃帚。" },
-{ id: "d2_rh4", speaker: "系統", text: "你將它帶回屋內。" },
+      { id: "d2_rh3", speaker: "系統", text: "意外在角落看見好久沒用的樺樹枝掃帚。" },
+      { id: "d2_rh4", speaker: "系統", text: "你將它帶回屋內。" },
   ],
 "day2_result_heal_fail": [
       { id: "d2_rhf1", speaker: "系統", text: "一切如舊。" },
       { id: "d2_rhf2", speaker: "系統", text: "你依稀瞥見窗外有女人一閃而過，如泣如訴。" },
+      { id: "d2_rhf3", speaker: "系統", text: "你再也沒聽說那個婦人的消息。" }
   ],
   "day2_result_poison": [
-      { id: "d2_rp1", speaker: "系統", text: "村裡的鐘聲敲得很急。" },
-      { id: "d2_rp2", speaker: "系統", text: "據說有個酒鬼暴斃在家中，臉色發青，像是中了邪。" },
-      { id: "d2_rp3", speaker: "系統", text: "你摩挲著指尖殘留的草藥氣味，不置可否。" }
+      { id: "d2_rp1", speaker: "系統", text: "據說有個酒鬼暴斃在家中，臉色發青，像是中了邪。" },
+      { id: "d2_rp2", speaker: "系統", text: "你摩娑指尖殘留的藥草，不置可否。" },
+      { id: "d2_rp3", speaker: "系統", text: "早晨拔了幾株藥園中蔓生的芸香，" },
+      { id: "d2_rp3", speaker: "系統", text: "意外在角落看見好久沒用的樺樹枝掃帚。" },
+      { id: "d2_rp4", speaker: "系統", text: "你將它帶回屋內。" },
   ],
   "day2_result_fail": [
       { id: "d2_rf1", speaker: "系統", text: "一切如舊。" },

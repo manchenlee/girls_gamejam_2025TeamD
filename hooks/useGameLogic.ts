@@ -108,8 +108,8 @@ export const useGameLogic = () => {
            newSceneItems.push('dagger');
        }
     }else if (day === 3) {
-        if (state.history.day2Result === 'heal') {
-            console.log("掃帚新增");
+        if (state.history.day2Result === 'heal' || state.history.day2Result === 'poison') {
+            //console.log("掃帚新增");
            newSceneItems.push('broom');
     } }
     else if (day === 4) {
@@ -497,6 +497,7 @@ export const useGameLogic = () => {
         activeHint: null, 
         pendingResult: null, // Clear this, we don't show it now
         nextDayResult: delayedResultKey || null, // Store for tomorrow
+        tutorialStep: 0, 
     }));
     
     // Play the immediate reaction script
