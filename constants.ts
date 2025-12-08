@@ -354,9 +354,10 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
 
   // --- Day 2 ---
   "day2_start": [
-    { id: "d2_1", speaker: "系統", text: "今天的天空是黃色的。病態且帶著瘀痕。\n你覺得像一隻流落街頭人人喊打的流浪貓。" },
-    { id: "d2_2", speaker: "黑貓", text: "喵——" },
-    { id: "d2_3", speaker: "系統", text: "聽見外頭有騷動，看向窗外，是一個婦人。\n這位婦人神色憔悴，蒼白不安，讓你想起黃楊木那簌簌顫抖的葉。"}
+    { id: "d2_1", speaker: "系統", text: "那個遙遠的聲音又在腦中迴響。\n這幾天清醒時也聽得到了。" },
+    { id: "d2_2", speaker: "系統", text: "今天的天空是黃色的。病態且帶著瘀痕。\n你覺得像一隻流落街頭人人喊打的流浪貓。" },
+    { id: "d2_3", speaker: "黑貓", text: "喵——" },
+    { id: "d2_4", speaker: "系統", text: "聽見外頭有騷動，看向窗外，是一個婦人。\n這位婦人神色憔悴，蒼白不安，讓你想起黃楊木那簌簌顫抖的葉。"}
   ],
   "day2_guest": [
     { id: "d2_g1", speaker: "婦人", text: "晚安。" },
@@ -420,9 +421,10 @@ export const SCRIPTS: Record<string, ScriptNode[]> = {
 
   // --- Day 3 ---
   "day3_start": [
-    { id: "d3_1", speaker: "系統", text: "今天的天空是黑色的。沒有星光。\n你覺得像一隻已經屍僵的黑色貓咪。" },
-    { id: "d3_2", speaker: "黑貓", text: "喵——" },
-    { id: "d3_3", speaker: "系統", text: "聽見清脆的敲窗聲，外頭站著一個少女。" },
+    { id: "d2_1", speaker: "系統", text: "那個遙遠的聲音又在腦中迴響。\n你緩緩意識到聲音在調製藥草時尤其清晰。" },
+    { id: "d3_2", speaker: "系統", text: "今天的天空是黑色的。沒有星光。\n你覺得像一隻已經屍僵的黑色貓咪。" },
+    { id: "d3_3", speaker: "黑貓", text: "喵——" },
+    { id: "d3_4", speaker: "系統", text: "聽見清脆的敲窗聲，外頭站著一個少女。" },
   ],
   // 這裡要補少女敲窗戶的說明
   "day3_guest": [

@@ -1,5 +1,3 @@
-
-
 import React, { useRef, useState } from 'react';
 import { useGameLogic } from './hooks/useGameLogic';
 import { GameScene } from './components/GameScene';
@@ -98,6 +96,7 @@ const App: React.FC = () => {
             onStartTrueEnding={actions.triggerTrueEndingSequence}
             onCompleteEnding={actions.completeEndingSequence}
             onRestart={actions.restartGame}
+            onWakeUp={actions.wakeUp}
           />
 
           {/* Mobile Selection Indicator */}

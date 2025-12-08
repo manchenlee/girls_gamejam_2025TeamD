@@ -118,12 +118,16 @@ export const useGameLogic = () => {
       unlockedJournal: day <= 3 ? [...prev.unlockedJournal, day - 1] : prev.unlockedJournal,
       sceneItems: newSceneItems,
       activeHint: null, 
-      isTransitioning: false, 
       isBlackout: false,
       // CRITICAL: Move the delayed result to pending so it shows now
       pendingResult: prev.nextDayResult,
       nextDayResult: null,
+      // Removed isTransitioning: false, so it persists from endDay until manually cleared
     }));
+  };
+  
+  const wakeUp = () => {
+      setState(prev => ({ ...prev, isTransitioning: false }));
   };
 
   const advanceDialogue = () => {
@@ -324,14 +328,11 @@ export const useGameLogic = () => {
               const nextDay = state.day + 1;
               startDay(nextDay);
               
-              // Keep overlay up for another 2 seconds then fade out
-              setTimeout(() => {
-                  setState(prev => ({ ...prev, isTransitioning: false }));
-              }, 2000);
+              // REMOVED AUTO FADE OUT: Now waits for user click in WakeUp
               
           }, 2000);
       } else {
-          // Fallback if somehow we get past day 4 (shouldn't happen with current logic)
+          // Fallback if somehow we get past day 4
       }
   };
 
@@ -503,7 +504,8 @@ export const useGameLogic = () => {
         closeResultModal,
         triggerTrueEndingSequence,
         completeEndingSequence,
-        debugTriggerEnding3
+        debugTriggerEnding3,
+        wakeUp // Export the new action
     }
   };
 };

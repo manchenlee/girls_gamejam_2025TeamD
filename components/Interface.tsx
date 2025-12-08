@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Book, Scroll, History, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -18,6 +16,7 @@ interface Props {
   onStartTrueEnding: () => void; 
   onCompleteEnding: () => void;
   onRestart: () => void;
+  onWakeUp: () => void; // New prop for manually ending transition
 }
 
 const SafeImage = ({ src, alt, className, ...props }: any) => {
@@ -34,7 +33,7 @@ const SafeImage = ({ src, alt, className, ...props }: any) => {
   );
 };
 
-export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onChoice, onBrew, onClear, onStart, onCloseResult, onStartTrueEnding, onCompleteEnding, onRestart }) => {
+export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onChoice, onBrew, onClear, onStart, onCloseResult, onStartTrueEnding, onCompleteEnding, onRestart, onWakeUp }) => {
   const [showJournal, setShowJournal] = useState(false);
   const [showHerbs, setShowHerbs] = useState(false);
   const [showLogs, setShowLogs] = useState(false);
@@ -172,7 +171,7 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
 
   return (
     <>
-      {/* Black Screen Transition Overlay */}
+      {/* Black Screen Transition Overlay (Day Change) */}
       <AnimatePresence>
         {gameState.isTransitioning && (
             <motion.div
@@ -180,17 +179,36 @@ export const Interface: React.FC<Props> = ({ gameState, activeNode, onNext, onCh
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1.2, ease: "easeInOut" }}
-                className="absolute inset-0 bg-black z-[200] flex items-center justify-center select-none"
+                className="absolute inset-0 bg-black z-[200] flex flex-col items-center justify-center select-none"
             >
-                {gameState.day <= 3 && (
-                    <motion.h2 
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 1, duration: 2 }}
-                        className="text-[#d4af37] font-title text-5xl md:text-7xl tracking-[0.2em] uppercase"
-                    >
-                        Day <span className="font-serif">{gameState.day + 1}</span>
-                    </motion.h2>
+                {gameState.day <= 4 && (
+                    <>
+                        <motion.h2 
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 1, duration: 2 }}
+                            className="text-[#d4af37] font-title text-5xl md:text-7xl tracking-[0.2em] uppercase mb-10"
+                        >
+                            Day <span className="font-serif">{gameState.day}</span>
+                        </motion.h2>
+
+                        <motion.button
+                           variants={{
+                             hidden: { opacity: 0, pointerEvents: 'none' },
+                             visible: { 
+                               opacity: 1, 
+                               pointerEvents: 'auto',
+                               transition: { delay: 3.5, duration: 1.5 } 
+                             }
+                           }}
+                           initial="hidden"
+                           animate="visible"
+                           onClick={onWakeUp}
+                           className="px-8 py-3 border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 rounded font-serif text-xl tracking-widest uppercase cursor-pointer"
+                        >
+                           『時候』將近，醒來吧。
+                        </motion.button>
+                    </>
                 )}
             </motion.div>
         )}
