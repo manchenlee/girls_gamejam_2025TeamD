@@ -6,7 +6,7 @@ import { GameState, CharacterId, GamePhase, HerbId, ScriptNode } from '../types'
 
 interface Props {
   gameState: GameState;
-  activeScriptNode?: ScriptNode | null;
+  //activeScriptNode?: ScriptNode | null;
   onHerbDragStart: (e: React.DragEvent, id: string) => void; // Changed ID type to string
   onPotDrop: (e: React.DragEvent) => void;
   onPotClick: () => void; 
@@ -38,7 +38,7 @@ const SafeImage = ({ src, alt, className, fallbackColor = '333', ...props }: any
   );
 };
 
-export const GameScene: React.FC<Props> = ({ gameState, activeScriptNode, onHerbDragStart, onPotDrop, onPotClick, onHerbClick, isShaking }) => {
+export const GameScene: React.FC<Props> = ({ gameState, onHerbDragStart, onPotDrop, onPotClick, onHerbClick, isShaking }) => {
   const [hoverDescription, setHoverDescription] = useState<string | null>(null);
   
   // Main Character Glitch State
@@ -92,7 +92,7 @@ useEffect(() => {
   const DISPLAY_HERBS = HERBS.slice(0, 5);
   
   const isDay4Brewing = gameState.day === 4 && gameState.phase === GamePhase.BREWING;
-  const isCatTalking = activeScriptNode?.speaker === '黑貓';
+  //const isCatTalking = activeScriptNode?.speaker === '黑貓';
 
   return (
     <div className={`relative w-full h-full overflow-hidden select-none ${isShaking ? 'animate-[shake_0.5s_cubic-bezier(.36,.07,.19,.97)_both]' : ''}`}>
@@ -243,24 +243,6 @@ useEffect(() => {
             fallbackColor="8c7335"
         />
       </div>
-      {/* Blact cat */}
-      <AnimatePresence>
-        {isCatTalking && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.5 }}
-            className="absolute bottom-[40%] left-[10%] z-21 pointer-events-none w-48 md:w-64"
-          >
-             <SafeImage 
-               src={ASSETS.characters[CharacterId.CAT]} 
-               className="w-full object-contain drop-shadow-xl" 
-               alt="Talking Cat" 
-             />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Herbs Display (No Shelf) (Z-25) */}
       <div className="absolute left-9 top-20 bottom-32 w-80 md:w-[32rem] flex flex-col items-center z-25">
@@ -271,7 +253,11 @@ useEffect(() => {
                 draggable
                 onDragStart={(e) => onHerbDragStart(e, herb.id)}
                 onClick={() => onHerbClick(herb.id)}
-                onMouseEnter={() => handleMouseEnter(`${herb.name}\n${herb.description}`)}
+                onMouseEnter={() => handleMouseEnter(handleMouseEnter(
+                    gameState.day === 4 
+                      ? `${herb.name}：\n不想吃。` 
+                      : `${herb.name}：\n${herb.description}`
+                ))}
                 onMouseLeave={handleMouseLeave}
                 className={`relative group cursor-pointer hover:scale-105 transition-transform
                    ${index === 0 ? 'col-span-2 row-span-2 aspect-[2/1]' : 'aspect-square'} 

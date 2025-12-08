@@ -133,7 +133,7 @@ useEffect(() => {
           {/* Scene Layer */}
           <GameScene 
             gameState={state} 
-            activeScriptNode={activeScriptNode} 
+            //activeScriptNode={activeScriptNode} 
             onHerbDragStart={handleDragStart}
             onPotDrop={handleDrop}
             onPotClick={handlePotClick}
